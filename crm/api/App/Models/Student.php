@@ -8,16 +8,14 @@ class Student extends Model
 {
     protected $table = 'students';
   protected $fillable = [
-    'first_name',
-        'last_name',
-        'email',
-        'phone_number',
-        'address',
-        'gender',
-        'date_of_birth',
-        'age',
-        'major',
-  ];
+    'name',
+    'major',
+    'email',
+    'phonenumber',
+    'city',
+    'age',
+    'gender',
+];
   protected $casts=[
     'date_of_birth' => 'date',
     'age'=>'integer',

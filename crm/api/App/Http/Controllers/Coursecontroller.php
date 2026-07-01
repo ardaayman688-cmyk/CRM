@@ -58,10 +58,10 @@ public function show($id){
         "age"=>27
     ] 
        ];
-    foreach ($Course as $Course) {
-        if ($Course['id']==$id){
+    foreach ($Course as $course) {
+        if ($course['id']==$id){
    
-return response()->json([$Course]);
+return response()->json([$course]);
 }}
 return response()->json([
     'message' => 'Course not found'
@@ -80,7 +80,7 @@ public function creatCourse(Request $request){
 return response()->json([
     'message' => 'Course created successfully',
     'Course' => $newCourse
-],303);
+],201);
 
 }
 public function updateCourse(Request $request,$id){
@@ -96,20 +96,20 @@ public function updateCourse(Request $request,$id){
 return response()->json([
     'message' => 'Course updat successfully',
     'Course' =>  $updatedCourse
-],303);
+],200);
 }
-public function deleteuser($id){
+public function deleteCourse($id){
     return response()->json([
     'message' => 'Course deleted successfully',
-    'user_id' =>  $id 
+    'course_id' => $id
     
-],407);
+],200);
 }
 public function updatepartial(Request $request,$id){
     return response()->json([
     'message' => 'Course partially updated successfully',
     'Course_id' =>  $id ,
     'updated_data'=> $request->all()
-],208);
+],200);
 }
 }
