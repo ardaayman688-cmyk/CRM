@@ -13,12 +13,22 @@ return Application::configure(basePath: dirname(__DIR__))
     )
 
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->alias([
-            'is_admin' => \App\Http\Middleware\IsAdmin::class,
-        ]);
-    })
 
+    $middleware->alias([
+        'is_admin' => \App\Http\Middleware\IsAdmin::class,
+    ]);
+
+    $middleware->redirectGuestsTo(fn () => null);
+
+})
     ->withExceptions(function (Exceptions $exceptions) {
         //
-    })
+   
+    $exceptions->render(function (\Illuminate\Auth\AuthenticationException $e, $request) {
+        return response()->json([
+            'message' => 'Unauthenticated'
+        ], 401);
+    });
+
+})
     ->create();
