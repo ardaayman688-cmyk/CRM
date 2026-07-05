@@ -64,4 +64,13 @@ class RegisterController extends Controller
         'token' => $token,
     ], 200);
 }
+
+public function logout(Request $request)
+{
+    $request->user()->token()->revoke();
+
+    return response()->json([
+        'message' => 'Logout successful'
+    ], 200);
+}
 }

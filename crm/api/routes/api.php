@@ -15,6 +15,7 @@ use App\Http\Controllers\RegisterController;
 Route::controller(RegisterController::class)->group(function () {
     Route::post('customer/register', 'register');
     Route::post('customer/login', 'login');
+   
 });
 
 Route::get('/students', [StudentController::class, 'index']);
@@ -26,7 +27,8 @@ Route::get('/courses', [CourseController::class, 'index']);
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth:api', 'is_admin'])->group(function () {
+Route::middleware('auth:api')->group(function () {
+     Route::post('/logout', [RegisterController::class, 'logout']);
 
     // Students
     Route::get('/students/{id}', [StudentController::class, 'show']);
@@ -41,4 +43,5 @@ Route::middleware(['auth:api', 'is_admin'])->group(function () {
     Route::put('/courses/{id}', [CourseController::class, 'updateCourse']);
     Route::patch('/courses/{id}', [CourseController::class, 'updatepartial']);
     Route::delete('/courses/{id}', [CourseController::class, 'deleteCourse']);
+    
 });
